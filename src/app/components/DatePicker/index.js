@@ -16,7 +16,7 @@ function DatePicker({ ...props }) {
       showMonthDropdown
       selected={(field.value && new Date(field.value)) || null}
       onChange={val => {
-        setFieldValue(field.name, val.toUTCString());
+        setFieldValue(field.name, val);
       }}
     />
   );

@@ -17,8 +17,8 @@ function CandidateCard({ user }) {
             {user.identification}
           </li>
           <li>
-            <strong>{`${USER_INFO.birthDate}: `}</strong>
-            {user.birthDate}
+            <strong>{`${USER_INFO.birthdate}: `}</strong>
+            {new Date(user.birthdate).toDateString()}
           </li>
           <li>
             <strong>{`${USER_INFO.githubUser}: `}</strong>
@@ -35,7 +35,7 @@ CandidateCard.propTypes = {
     firstName: string.isRequired,
     lastName: string,
     identification: string.isRequired,
-    birthDate: string,
+    birthdate: string,
     email: string.isRequired,
     githubUser: string.isRequired
   }).isRequired

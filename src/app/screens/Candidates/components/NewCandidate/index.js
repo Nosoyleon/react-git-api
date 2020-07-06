@@ -1,6 +1,7 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
 import FormInput from 'app/components/FormInput';
+import { useCookies } from 'react-cookie';
 
 import { BUTTONS } from '../../strings';
 import { FORM_FIELDS } from './constants';
@@ -8,8 +9,10 @@ import styles from './styles.module.scss';
 import { newCandidateValidation } from './validations';
 
 function NewCandidate() {
+  const [cookies, setCookie] = useCookies(['candidates']);
   const initialDate = new Date();
   initialDate.setFullYear(initialDate.getFullYear() - 18);
+
   return (
     <div>
       <Formik
@@ -24,7 +27,10 @@ function NewCandidate() {
         validationSchema={newCandidateValidation}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
+            const candidateList = cookies.candidates || [];
+            candidateList.push(values)
+            setCookie('candidates',  candidateList );
+  
             setSubmitting(false);
           }, 400);
         }}
