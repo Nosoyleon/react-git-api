@@ -7,5 +7,6 @@ export const VALIDATIONS = {
 
 export const BUTTONS = {
   save: 'Guardar',
-  cancel: 'Cancelar'
+  cancel: 'Cancelar',
+  addCandidate: 'Agregar candidato'
 }

@@ -1,3 +1,18 @@
 .candidateForm {
   max-width: 400px;
+  transition: max-height 400ms ease-in-out;
+  overflow: hidden;
+  max-height: 800px;
+}
+
+.hideForm {
+  max-height: 0;
+}
+
+.addButton {
+  transition: transform 400ms ease-in-out;
+}
+
+.hideButton {
+  transform: scale(0);
 }
