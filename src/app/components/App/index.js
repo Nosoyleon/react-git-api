@@ -1,26 +1,11 @@
 import React from 'react';
-import logo from '../../../assets/logo.svg';
-import styles from './styles.module.scss';
+
+import Candidates from '../../screens/Candidates';
+
+import 'bulma/css/bulma.css';
 
 function App() {
-  return (
-    <div className={styles.app}>
-      <header className={styles.appHeader}>
-        <img src={logo} className={styles.appLogo} alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className={styles.appLink}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <Candidates />;
 }
 
 export default App;
