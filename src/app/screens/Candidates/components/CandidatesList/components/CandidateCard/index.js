@@ -7,9 +7,6 @@ function CandidateCard({ user }) {
   return (
     <div className="box mb-0">
       <div className="level">
-        <figure className="image is-32x32">
-          <img src={user.avatarUrl} alt="avatar" />
-        </figure>
         <strong>{`${user.firstName} ${user.lastName}`}</strong>{' '}
         <small>{user.email}</small>
       </div>
@@ -40,8 +37,7 @@ CandidateCard.propTypes = {
     identification: string.isRequired,
     birthDate: string,
     email: string.isRequired,
-    githubUser: string.isRequired,
-    avatarUrl: string
+    githubUser: string.isRequired
   }).isRequired
 };
 

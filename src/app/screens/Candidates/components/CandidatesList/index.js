@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CandidateCard from '../CandidateCard';
+import CandidateCard from './components/CandidateCard';
 
 import styles from './styles.module.scss';
 import { EMPTY_LIST } from './strings';
