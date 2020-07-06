@@ -1,12 +1,15 @@
 import React from 'react';
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
+import FormInput from 'app/components/FormInput';
 
-import FormInput from '../../../../components/FormInput';
+import { BUTTONS } from '../../strings';
 import { FORM_FIELDS } from './constants';
 import styles from './styles.module.scss';
+import { newCandidateValidation } from './validations';
 
 function NewCandidate() {
+  const initialDate = new Date();
+  initialDate.setFullYear(initialDate.getFullYear() - 18);
   return (
     <div>
       <Formik
@@ -14,19 +17,11 @@ function NewCandidate() {
           firstName: '',
           lastName: '',
           identification: '',
-          birthdate: '',
+          birthdate: initialDate,
           email: '',
           githubUser: ''
         }}
-        validationSchema={Yup.object({
-          firstName: Yup.string().required('Required'),
-          lastName: Yup.string().required('Required'),
-          identification: Yup.string().required('Required'),
-          email: Yup.string()
-            .email('Invalid email address')
-            .required('Required'),
-          githubUser: Yup.string().required('Required')
-        })}
+        validationSchema={newCandidateValidation}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
@@ -36,9 +31,9 @@ function NewCandidate() {
       >
         {({ isSubmitting }) => (
           <Form className={styles.candidateForm}>
-            {
-              FORM_FIELDS.map(({ name, type, label }) => <FormInput key={name} label={label} name={name} type={type} />)
-            }
+            {FORM_FIELDS.map(({ name, type, label }) => (
+              <FormInput key={name} label={label} name={name} type={type} />
+            ))}
             <div className="field is-grouped">
               <div className="control">
                 <button
@@ -46,12 +41,12 @@ function NewCandidate() {
                   className="button is-link"
                   disabled={isSubmitting}
                 >
-                  Guardar
+                  {BUTTONS.save}
                 </button>
               </div>
               <div className="control">
                 <button type="button" className="button is-link is-light">
-                  Cancelar
+                  {BUTTONS.cancel}
                 </button>
               </div>
             </div>

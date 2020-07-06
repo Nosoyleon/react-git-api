@@ -16,7 +16,7 @@ export const FORM_FIELDS = [
   },
   {
     name: 'birthdate',
-    type: 'text',
+    type: 'date',
     label: 'Fecha de nacimiento'
   },
   {
@@ -28,5 +28,5 @@ export const FORM_FIELDS = [
     name: 'githubUser',
     type: 'text',
     label: 'Usuario de Github'
-  },
-]
+  }
+];
