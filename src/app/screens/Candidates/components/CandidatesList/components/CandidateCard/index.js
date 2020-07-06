@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { string, shape } from 'prop-types';
+import cn from 'classnames';
+import { CandidatesContext } from 'app/screens/Candidates/context';
 
 import { USER_INFO } from './strings';
+import styles from './styles.module.scss';
 
 function CandidateCard({ user }) {
+
+  const context = useContext(CandidatesContext);
+
+  const selectUser = () => {
+    context.setSelectedUser(user.githubUser);
+  }
+
   return (
-    <div className="box mb-0">
+    <div className={cn("box mb-0", { [styles.selected]: user.githubUser === context.selectedUser})} onClick={selectUser}>
       <div className="level">
         <strong>{`${user.firstName} ${user.lastName}`}</strong>{' '}
         <small>{user.email}</small>
