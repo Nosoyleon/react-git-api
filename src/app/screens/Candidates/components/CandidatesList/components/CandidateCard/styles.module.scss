@@ -1,3 +1,12 @@
 .selected {
-  border: 2px solid black;
+  border: 2px solid black !important;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+
+.buttonContainer {
+  border: 0;
 }

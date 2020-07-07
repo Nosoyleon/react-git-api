@@ -18,23 +18,28 @@ function NewCandidate() {
   const handleSubmit = (values, { setSubmitting, resetForm }) => {
     setTimeout(() => {
       const candidateList = cookies.candidates || [];
-      candidateList.push(values)
-      setCookie('candidates',  candidateList );
+      candidateList.push(values);
+      setCookie('candidates', candidateList);
 
       setSubmitting(false);
       resetForm();
+      setIsOpen(false);
     }, 400);
-  }
-  
+  };
+
   return (
     <div className="mb-5">
       <div className="buttons">
-        <button className={cn("button is-primary", { 
-            [styles.addButton]: true, 
-            [styles.hideButton]: isOpen 
-            }
-          )} 
-          onClick={() => setIsOpen(true)}>{BUTTONS.addCandidate}</button>
+        <button
+          type="button"
+          className={cn('button is-primary', {
+            [styles.addButton]: true,
+            [styles.hideButton]: isOpen
+          })}
+          onClick={() => setIsOpen(true)}
+        >
+          {BUTTONS.addCandidate}
+        </button>
       </div>
       <Formik
         initialValues={{
@@ -49,7 +54,7 @@ function NewCandidate() {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className={ cn(styles.candidateForm, { [styles.hideForm]: !isOpen })}>
+          <Form className={cn(styles.candidateForm, { [styles.hideForm]: !isOpen })}>
             {FORM_FIELDS.map(({ name, type, label }) => (
               <FormInput key={name} label={label} name={name} type={type} />
             ))}
@@ -64,7 +69,11 @@ function NewCandidate() {
                 </button>
               </div>
               <div className="control">
-                <button type="button" className="button is-link is-light" onClick={() => setIsOpen(false)}>
+                <button
+                  type="button"
+                  className="button is-link is-light"
+                  onClick={() => setIsOpen(false)}
+                >
                   {BUTTONS.cancel}
                 </button>
               </div>

@@ -1,8 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import { useField, useFormikContext } from "formik";
-import ReactDatePicker from "react-datepicker";
+import { useField, useFormikContext } from 'formik';
+import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
 
 function DatePicker({ ...props }) {
   const { setFieldValue } = useFormikContext();

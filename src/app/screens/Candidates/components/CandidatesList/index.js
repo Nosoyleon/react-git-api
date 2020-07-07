@@ -11,7 +11,9 @@ function CandidatesList({ cookies }) {
   return (
     <div className={styles.listContainer}>
       {cookies.get('candidates')?.length ? (
-        cookies.get('candidates').map((user) => <CandidateCard key={user.githubUser} user={user} />)
+        cookies
+          .get('candidates')
+          .map(user => <CandidateCard key={user.githubUser} user={user} />)
       ) : (
         <div className="notification">{EMPTY_LIST}</div>
       )}
@@ -21,6 +23,6 @@ function CandidatesList({ cookies }) {
 
 CandidatesList.propTypes = {
   cookies: instanceOf(Cookies).isRequired
-}
+};
 
 export default withCookies(CandidatesList);

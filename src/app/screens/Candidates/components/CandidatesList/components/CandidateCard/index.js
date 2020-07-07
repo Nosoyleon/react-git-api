@@ -7,20 +7,25 @@ import { USER_INFO } from './strings';
 import styles from './styles.module.scss';
 
 function CandidateCard({ user }) {
-
-  const context = useContext(CandidatesContext);
+  const { selectedUser, setSelectedUser } = useContext(CandidatesContext);
 
   const selectUser = () => {
-    context.setSelectedUser(user.githubUser);
-  }
+    setSelectedUser(user.githubUser);
+  };
 
   return (
-    <div className={cn("box mb-0", { [styles.selected]: user.githubUser === context.selectedUser})} onClick={selectUser}>
+    <button
+      type="button"
+      className={cn(`${styles.buttonContainer} box mb-0`, {
+        [styles.selected]: user.githubUser === selectedUser
+      })}
+      onClick={selectUser}
+    >
       <div className="level">
-        <strong>{`${user.firstName} ${user.lastName}`}</strong>{' '}
+        <strong>{`${user.firstName} ${user.lastName} `}</strong>
         <small>{user.email}</small>
       </div>
-      <div className="content">
+      <div className="content has-text-justified">
         <ul>
           <li>
             <strong>{`${USER_INFO.identification}: `}</strong>
@@ -36,7 +41,7 @@ function CandidateCard({ user }) {
           </li>
         </ul>
       </div>
-    </div>
+    </button>
   );
 }
 

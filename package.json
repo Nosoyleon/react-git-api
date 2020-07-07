@@ -10,6 +10,7 @@
     "classnames": "^2.2.6",
     "formik": "^2.1.4",
     "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-cookie": "^4.0.3",
     "react-datepicker": "^3.0.0",
@@ -39,6 +40,14 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-react": "^7.20.3"
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-react-hooks": "^4.0.5",
+    "prettier": "^2.0.5"
   }
 }

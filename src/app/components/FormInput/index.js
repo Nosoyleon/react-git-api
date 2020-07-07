@@ -6,7 +6,9 @@ import DatePicker from '../DatePicker';
 function FormInput({ label, type, name }) {
   return (
     <div className="field">
-      <label className="label">{label}</label>
+      <label className="label" htmlFor={name}>
+        {label}
+      </label>
       <div className="control">
         {type === 'date' ? (
           <DatePicker className="input" name={name} />

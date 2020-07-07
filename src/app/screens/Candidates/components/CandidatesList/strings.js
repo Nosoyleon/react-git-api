@@ -1,1 +1,1 @@
-export const EMPTY_LIST = "No hay candidatos agregados."
+export const EMPTY_LIST = 'No hay candidatos agregados.';
