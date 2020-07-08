@@ -14,12 +14,17 @@ function Repositories() {
   const [loading, setLoading] = useState(false);
   const [sortKey, setSortKey] = useState('');
   const [sortDirection, setSortDirection] = useState('');
-
+  const [InputText, setInputText] = useState('');
+  const [searchText, setSearchText] = useState('');
+  const [timeOutId, setTimeOutId] = useState(null);
   useEffect(() => {
     if (selectedUser) {
       setLoading(true);
+      const getEndpoint = searchText
+        ? '/search/repositories'
+        : `/users/${selectedUser}/repos`;
       api
-        .get(`/users/${selectedUser}/repos`, {
+        .get(getEndpoint, {
           page,
           per_page: DEFAULT_RANGE,
           ...(sortKey && {
@@ -27,11 +32,14 @@ function Repositories() {
           }),
           ...(sortDirection && {
             direction: sortDirection
+          }),
+          ...(searchText && {
+            q: `${searchText} in:name user:${selectedUser}`
           })
         })
         .then(result => {
           if (result.ok) {
-            setTableData(result.data);
+            setTableData(searchText ? result.data.items : result.data);
             setErrorMessage('');
           } else {
             setTableData([]);
@@ -40,7 +48,7 @@ function Repositories() {
           setLoading(false);
         });
     }
-  }, [selectedUser, page, sortKey, sortDirection]);
+  }, [selectedUser, page, sortKey, sortDirection, searchText]);
 
   const toggleSort = newKey => {
     let newDirection = '';
@@ -56,6 +64,16 @@ function Repositories() {
     setSortDirection(newDirection);
   };
 
+  const handleOnChange = async ({ target }) => {
+    setInputText(target.value);
+    if (target.value.length >= 3) {
+      clearTimeout(timeOutId);
+      setTimeOutId(setTimeout(() => setSearchText(target.value), 475));
+    } else {
+      setSearchText('');
+    }
+  };
+
   const headers = HEADERS.map(header => ({
     ...header,
     headerProps: {
@@ -68,7 +86,18 @@ function Repositories() {
 
   return selectedUser ? (
     <>
-      <h1 className="title">{`${OWNER} ${selectedUser}`}</h1>
+      <div className="level">
+        <h1 className="title">{`${OWNER} ${selectedUser}`}</h1>
+        <div>
+          <input
+            className="input"
+            placeholder="Buscar..."
+            type="text"
+            onChange={handleOnChange}
+            value={InputText}
+          />
+        </div>
+      </div>
       <GeneralTable
         headers={headers}
         data={tableData}
