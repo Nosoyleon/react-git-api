@@ -21,7 +21,7 @@ function CandidateCard({ user }) {
       })}
       onClick={selectUser}
     >
-      <div className="level">
+      <div className={`level ${styles.cardHeader}`}>
         <strong>{`${user.firstName} ${user.lastName} `}</strong>
         <small>{user.email}</small>
       </div>
