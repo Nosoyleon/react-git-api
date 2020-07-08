@@ -4,6 +4,7 @@ import cn from 'classnames';
 
 import { DEFAULT_RANGE } from 'app/screens/Candidates/components/Repositories/constants';
 import { PREVIOUS, NEXT } from './strings';
+import Sorter from '../Sorter';
 
 function GeneralTable({ headers, data, errorMessage, loading, page, setPage }) {
   const pages = Array.from(Array(page).keys()).map(item => item + 1);
@@ -16,7 +17,9 @@ function GeneralTable({ headers, data, errorMessage, loading, page, setPage }) {
             <thead>
               <tr>
                 {headers.map(({ accesor, label }) => (
-                  <th key={accesor}>{label}</th>
+                  <th key={accesor}>
+                    <Sorter label={label} />
+                  </th>
                 ))}
               </tr>
             </thead>
