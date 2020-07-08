@@ -1,10 +1,10 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { arrayOf, string, shape, object, bool, number, func } from 'prop-types';
 import cn from 'classnames';
 
 import { DEFAULT_RANGE } from 'app/screens/Candidates/components/Repositories/constants';
 import { PREVIOUS, NEXT } from './strings';
-import Sorter from '../Sorter';
 
 function GeneralTable({ headers, data, errorMessage, loading, page, setPage }) {
   const pages = Array.from(Array(page).keys()).map(item => item + 1);
@@ -16,9 +16,9 @@ function GeneralTable({ headers, data, errorMessage, loading, page, setPage }) {
           <table className="table is-striped is-hoverable is-fullwidth">
             <thead>
               <tr>
-                {headers.map(({ accesor, label }) => (
+                {headers.map(({ accesor, headerComponent: Cell, headerProps }) => (
                   <th key={accesor}>
-                    <Sorter label={label} />
+                    <Cell {...headerProps} />
                   </th>
                 ))}
               </tr>
@@ -102,8 +102,9 @@ GeneralTable.defaultProps = {
 GeneralTable.propTypes = {
   headers: arrayOf(
     shape({
-      label: string.isRequired,
-      accesor: string.isRequired
+      accesor: string.isRequired,
+      headerComponent: func,
+      headerProps: object
     })
   ).isRequired,
   data: arrayOf(object),

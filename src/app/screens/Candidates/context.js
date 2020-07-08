@@ -1,5 +1,3 @@
-import { createContext, useContext } from 'react';
+import { createContext } from 'react';
 
 export const CandidatesContext = createContext();
-
-export const useCandidateContext = () => useContext(CandidatesContext);

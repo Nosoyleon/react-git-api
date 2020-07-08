@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import api from 'services/api';
 import GeneralTable from 'app/components/GeneralTable';
 
@@ -12,6 +12,8 @@ function Repositories() {
   const [errorMessage, setErrorMessage] = useState('');
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const [sortKey, setSortKey] = useState('');
+  const [sortDirection, setSortDirection] = useState('');
 
   useEffect(() => {
     if (selectedUser) {
@@ -19,7 +21,13 @@ function Repositories() {
       api
         .get(`/users/${selectedUser}/repos`, {
           page,
-          per_page: DEFAULT_RANGE
+          per_page: DEFAULT_RANGE,
+          ...(sortKey && {
+            sort: sortKey
+          }),
+          ...(sortDirection && {
+            direction: sortDirection
+          })
         })
         .then(result => {
           if (result.ok) {
@@ -30,13 +38,37 @@ function Repositories() {
           setLoading(false);
         });
     }
-  }, [selectedUser, page]);
+  }, [selectedUser, page, sortKey, sortDirection]);
+
+  const toggleSort = newKey => {
+    let newDirection = '';
+    if (!sortDirection) {
+      newDirection = 'desc';
+    } else if (sortDirection === 'desc') {
+      newDirection = 'asc';
+    } else {
+      newDirection = '';
+    }
+
+    setSortKey(newDirection ? newKey : '');
+    setSortDirection(newDirection);
+  };
+
+  const headers = HEADERS.map(header => ({
+    ...header,
+    headerProps: {
+      ...header.headerProps,
+      toggleSort,
+      currentSortKey: sortKey,
+      direction: sortDirection
+    }
+  }));
 
   return selectedUser ? (
     <>
       <h1 className="title">{`${OWNER} ${selectedUser}`}</h1>
       <GeneralTable
-        headers={HEADERS}
+        headers={headers}
         data={tableData}
         errorMessage={errorMessage}
         loading={loading}

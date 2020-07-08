@@ -1,23 +1,45 @@
+import Sorter from 'app/components/Sorter';
+
 export const HEADERS = [
   {
-    label: 'Lenguaje',
-    accesor: 'language'
+    accesor: 'language',
+    headerComponent: Sorter,
+    headerProps: {
+      label: 'Lenguaje',
+      sortKey: 'language'
+    }
   },
   {
-    label: 'Branch por defecto',
-    accesor: 'default_branch'
+    accesor: 'default_branch',
+    headerComponent: Sorter,
+    headerProps: {
+      label: 'Branch por defecto',
+      sortKey: 'default_branch'
+    }
   },
   {
-    label: 'Url git',
-    accesor: 'html_url'
+    accesor: 'html_url',
+    headerComponent: Sorter,
+    headerProps: {
+      label: 'Url git',
+      sortKey: 'html_url'
+    }
   },
   {
-    label: 'Nombre',
-    accesor: 'name'
+    accesor: 'name',
+    headerComponent: Sorter,
+    headerProps: {
+      label: 'Nombre',
+      sortKey: 'name'
+    }
   },
   {
-    label: 'Descripción',
-    accesor: 'description'
+    accesor: 'description',
+    headerComponent: Sorter,
+    headerProps: {
+      label: 'Descripción',
+      sortKey: 'description'
+    }
   }
 ];
 
