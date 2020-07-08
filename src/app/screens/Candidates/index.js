@@ -11,7 +11,12 @@ function Candidates() {
   const [selectedUser, setSelectedUser] = useState('');
 
   return (
-    <CandidatesContext.Provider value={{ selectedUser, setSelectedUser }}>
+    <CandidatesContext.Provider
+      value={{
+        selectedUser,
+        setSelectedUser
+      }}
+    >
       <CookiesProvider>
         <div className="container mt-6">
           <h1 className="title">{TITLE}</h1>

@@ -54,7 +54,11 @@ function NewCandidate() {
         onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
-          <Form className={cn(styles.candidateForm, { [styles.hideForm]: !isOpen })}>
+          <Form
+            className={cn(styles.candidateForm, {
+              [styles.hideForm]: !isOpen
+            })}
+          >
             {FORM_FIELDS.map(({ name, type, label }) => (
               <FormInput key={name} label={label} name={name} type={type} />
             ))}
