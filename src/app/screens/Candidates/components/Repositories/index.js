@@ -32,7 +32,9 @@ function Repositories() {
         .then(result => {
           if (result.ok) {
             setTableData(result.data);
+            setErrorMessage('');
           } else {
+            setTableData([]);
             setErrorMessage(GET_DATA_ERROR);
           }
           setLoading(false);

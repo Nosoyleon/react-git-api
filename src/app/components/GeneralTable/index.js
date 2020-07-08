@@ -11,7 +11,7 @@ function GeneralTable({ headers, data, errorMessage, loading, page, setPage }) {
 
   return (
     <>
-      {!loading && (
+      {!loading && !errorMessage && (
         <>
           <table className="table is-striped is-hoverable is-fullwidth">
             <thead>
